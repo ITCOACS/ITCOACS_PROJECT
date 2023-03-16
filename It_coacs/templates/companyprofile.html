@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% from "includes/formhelpers.html" import render_field %}
+<h3>Şirket Bilgileri</h3>
+<hr>
+<form method = "post">
+    {{ render_field(form.companyname,class = "form-control") }}
+    {{ render_field(form.companydescription,class = "form-control") }}
+    {{ render_field(form.companytypelegally,class = "form-control") }}
+    {{ render_field(form.companytypefunctionally,class = "form-control") }}
+    {{ render_field(form.companyaddress,class = "form-control") }}
+    {{ render_field(form.companyphone,class = "form-control") }}
+    {{ render_field(form.companyemail,class = "form-control") }}
+    {{ render_field(form.companywebsite,class = "form-control") }}
+    {{ render_field(form.companylinkedin,class = "form-control") }}
+    {{ render_field(form.companyfacebook,class = "form-control") }}
+    {{ render_field(form.companytwitter,class = "form-control") }}
+    {{ render_field(form.companyinstagram,class = "form-control") }}
+    {{ render_field(form.companyyoutube,class = "form-control") }}
+    {{ render_field(form.companygoogleplus,class = "form-control") }}
+    {{ render_field(form.companytaxnumber,class = "form-control") }}
+    {{ render_field(form.companytaxoffice,class = "form-control") }}
+    {{ render_field(form.companytaxadmin,class = "form-control") }}
+    {{ render_field(form.companytaxadminphone,class = "form-control") }}
+    {{ render_field(form.companytaxadmineposta,class = "form-control") }}
+    {{ render_field(form.companytaxadminaddress,class = "form-control") }}
+    {{ render_field(form.companytaxadminidentitynumber,class = "form-control") }}
+    {{ render_field(form.companytaxadminidentitydate,class = "form-control") }}
+    {{ render_field(form.companytaxadminidentityplace,class = "form-control") }}
+    {{ render_field(form.companycurrency,class = "form-control") }}
+
+    <button type="submit" class="btn btn-primary">Bilgileri Ekle</button>
+</form>
+
+
+{% endblock body %}
+

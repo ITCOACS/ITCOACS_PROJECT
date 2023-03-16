@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Kontrol Paneli</h3>
+<small>Hoşgeldin {{session["username"]}}</small>
+<hr>
+
+
+<hr>
+<h4> Ayarlar </h4>
+<dl>
+  <dt>  </dt>
+  <dd><a href="/dashboard/kullanıcıayar" >Kullanıcı Ayarları</a></dd>
+  <dd>Tır,Dorse,Şoför ekleyip güncellemek için kullanın.</dd>
+
+</dl>
+
+<hr>
+
+{% if tickets %}
+<h4> Açtığınız Yolculuk Seferleri</h4>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">SeferID</th>
+      <th scope="col">İlk Konum</th>
+      <th scope="col">Son Konum</th>
+      <th scope="col">Başlangıç Tarihi</th>
+      <th scope="col">Ücret</th>
+      <th scope="col">Kapasite</th>
+      <th scope="col">Oluşturma Tarihi</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tickets in tickets %}
+    <tr>
+      <th  scope="row">{{tickets.ticketid}}</th>
+      <td><a href="ticketdetail/{{tickets.ticketid}}">{{tickets.firstlocation}}</a></td>
+      <td>{{tickets.endlocation}}</td>
+      <td>{{tickets.startdate}}</td>
+      <td>{{tickets.price}}</td>
+      <td>{{tickets.capacity}}</td>
+      <td>{{tickets.created_date}}</td>
+      <td><a href="/ticketsedit/{{tickets.ticketid}}" class = "btn btn-primary">Güncelle </a></td>
+      <td><a href="/ticketsdelete/{{tickets.ticketid}}" class = "btn btn-danger">Sil</a></td>
+    </tr>
+    {% endfor %}
+    <!--<tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr> -->
+
+  </tbody>
+</table>
+
+{% else %}
+<div class = "alert alert-danger">Henüz yolculuk seferi oluşturmadınız. </div>
+
+{% endif %}
+
+<a href="/addtickets" class = "btn btn-danger">Sefer Ekle</a>
+<hr>
+{% endblock body %}

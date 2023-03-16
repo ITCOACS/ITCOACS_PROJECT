@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h4>İptal Ettiğiniz veya Kaydını Seferden Silen Kullanıcılar</h4>
+<hr>
+<br>
+{% if cancelledshippingjobs_dr %}
+    {% if cancelledshippingjobs_cg %}
+        <h5> Şirketin İptal Ettiği Taşımacılık İşleri</h5>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">SeferID</th>
+            <th scope="col">Sürücü Kullanıcı Adı</th>
+            <th scope="col">Şirket Kullanıcı Adı</th>
+            <th scope="col">Silinme Tarihi</th>
+
+        
+        
+            <th scope="col"></th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cancelledshippingjobs_cg in cancelledshippingjobs_cg %}
+            <tr>
+            <th  scope="row">{{cancelledshippingjobs_cg.job_id}}</th>
+            <td>{{cancelledshippingjobs_cg.drivername}}</td>
+            <td>{{cancelledshippingjobs_cg.consignorname}}</td>
+            <td>{{cancelledshippingjobs_cg.cancelleddate}}</td>
+            
+            </tr>
+
+            {% endfor %}
+        </tbody>
+        </table>
+        <hr>
+        <br>
+    
+    {% else %}
+    <h5> Şirketin İptal Ettiği Taşımacılık İşleri</h5>
+    <dl> Şirketin İptal Ettiği Taşımacılık İşleri Bulunmamaktadır. </dl>
+    <hr>
+    <br>
+
+    {% endif %}
+
+<h5> Sizin İptal Ettiğiniz Taşımacılık İşleri</h5>
+<table class="table table-hover">
+<thead>
+    <tr>
+    <th scope="col">SeferID</th>
+    <th scope="col">Sürücü Kullanıcı Adı</th>
+    <th scope="col">Şirket Kullanıcı Adı</th>
+    <th scope="col">Silinme Tarihi</th>
+
+        
+        
+    <th scope="col"></th>
+    <th scope="col"></th>
+    </tr>
+</thead>
+<tbody>
+    {% for cancelledshippingjobs_dr in cancelledshippingjobs_dr %}
+    <tr>
+    <th  scope="row">{{cancelledshippingjobs_dr.job_id}}</th>
+    <td>{{cancelledshippingjobs_dr.drivername}}</td>
+    <td>{{cancelledshippingjobs_dr.consignorname}}</td>
+    <td>{{cancelledshippingjobs_dr.cancelleddate}}</td>
+        
+    </tr>
+
+    {% endfor %}
+</tbody>
+</table>
+<hr>
+<br>
+
+
+
+
+{% else %}
+
+<div class="alert alert-info" role="alert">
+  <strong>Sizin İptal Ettiğiniz Taşımacılık İşleri Bulunmamaktadır.</strong>
+</div>
+<hr>
+<br>
+    {% if cancelledshippingjobs_cg %}
+        <h5> Şirketin İptal Ettiği Taşımacılık İşleri</h5>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">SeferID</th>
+            <th scope="col">Sürücü Kullanıcı Adı</th>
+            <th scope="col">Şirket Kullanıcı Adı</th>
+            <th scope="col">Silinme Tarihi</th>
+        
+        
+            <th scope="col"></th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cancelledshippingjobs_cg in cancelledshippingjobs_cg %}
+            <tr>
+            <th  scope="row">{{cancelledshippingjobs_cg.job_id}}</th>
+            <td>{{cancelledshippingjobs_cg.drivername}}</td>
+            <td>{{cancelledshippingjobs_cg.consignorname}}</td>
+            <td>{{cancelledshippingjobs_cg.cancelleddate}}</td>
+        
+            </tr>
+
+            {% endfor %}
+        </tbody>
+        </table>
+        <hr>
+        <br>
+    
+    {% else %}
+    <h5> Şirketin İptal Ettiği Taşımacılık İşleri</h5>
+    <dl> Şirketin İptal Ettiği Taşımacılık İşleri Bulunmamaktadır. </dl>
+    <hr>
+    <br>
+    {% endif %}
+
+{% endif %}
+
+
+
+
+
+
+
+{% endblock body %}

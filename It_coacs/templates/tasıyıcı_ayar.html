@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+
+<h3>Sürücü Ayarları</h3>
+<hr>
+<dl>
+<hr>
+<h4> Taşımacılık İşinde Kullanılacak Tır-Dorse Seçimi</h4>
+<a href="/driverdashboard/tasıyıcı_ayar/truck_trailer" class = "btn btn-info">Sayfaya Git</a>
+<hr>
+
+
+
+{% if trailer  %}
+  {% if trucks %}
+  <h4>Tırlarım </h4>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Kullanıcı ID</th>
+        <th scope="col">Kullanıcı Adı</th>
+        <th scope="col">Marka</th>
+        <th scope="col">Model</th>
+        <th scope="col">Model Çeşidi</th>
+        <th scope="col">usertruck_id</th>
+        
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for trucks in trucks %}
+      <tr>
+        <th  scope="row">{{trucks.user_idd}}</th>
+        <td>{{trucks.user_name}}</td>
+        <td>{{trucks.marka_ad}}</td>
+        <td>{{trucks.model}}</td>
+        <td>{{trucks.model_type_name}}</td>
+        <td>{{trucks.usertruck_id}}</td>
+      
+        
+        <td><a href="/driverdashboard/tasıyıcı_ayar/deletetruck/{{trucks.usertruck_id}}" class = "btn btn-danger">Tırı Sil</a></td>
+      </tr>
+    
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="/driverdashboard/tasıyıcı_ayar/addtruck" class = "btn btn-primary"> Tır Ekle </a>
+  <hr>
+    
+    
+    {% else %}
+    <h4>Tırlarım</h4>
+    <div class = "alert alert - danger" > Henüz Tırınız Bulunmuyor </div>
+    <a href="/driverdashboard/tasıyıcı_ayar/addtruck" class = "btn btn-primary"> Tır Ekle </a>
+    <hr>
+    {% endif %}
+  
+<h4>Dorselerim </h4>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Kullanıcı ID</th>
+      <th scope="col">Kullanıcı Adı</th>
+      <th scope="col">Dorse Adı</th>
+      <th scope="col">Dorse Çeşidi</th>
+      <th scope="col">usertrailerid</th>
+      
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <thead>
+  <tbody>
+    {% for trailer in trailer %}
+    <tr>
+      <th  scope="row">{{trailer.user_idd}}</th>
+      <td>{{trailer.user_name}}</td>
+      <td>{{trailer.trailermodel_name}}</td>
+      <td>{{trailer.trailertype_name}}</td>
+      <td>{{trailer.usertrailerid}}</td>
+      
+      <td><a href="/driverdashboard/tasıyıcı_ayar/deletetrailer/{{trailer.usertrailerid}}" class = "btn btn-danger">Dorse Sil</a></td>
+    </tr>
+    
+    {% endfor %}
+    
+    <!--<tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr> -->
+
+  </tbody>
+</table>
+<a href="/driverdashboard/tasıyıcı_ayar/addtrailer" class = "btn btn-primary"> Dorse Ekle </a>
+<hr>
+
+
+{% else %}
+<h4>Dorselerim</h4>
+<div class = "alert alert - danger" > Henüz Dorseniz Bulunmuyor </div>
+<a href="/driverdashboard/tasıyıcı_ayar/addtrailer" class = "btn btn-primary"> Dorse Ekle </a>
+<hr>
+  {% if trucks %}
+  <h4>Tırlarım </h4>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Kullanıcı ID</th>
+        <th scope="col">Kullanıcı Adı</th>
+        <th scope="col">Marka </th>
+        <th scope="col">Model </th>
+        <th scope="col">Model Tipi</th>
+        <th scope="col">usertruck_id</th>
+
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for trucks in trucks %}
+      <tr>
+        <th  scope="row">{{trucks.user_idd}}</th>
+        <td>{{trucks.user_name}}</td>
+        <td>{{trucks.marka_ad}}</td>
+        <td>{{trucks.model}}</td>
+        <td>{{trucks.model_type_name}}</td>
+        <td>{{trucks.usertruck_id}}</td>
+
+        <td><a href="/driverdashboard/tasıyıcı_ayar/deletetruck/{{trucks.usertruck_id}}" class = "btn btn-danger">Tırı Sil</a></td>
+      </tr>
+    
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="/driverdashboard/tasıyıcı_ayar/addtruck" class = "btn btn-primary"> Tır Ekle </a>
+  <hr>
+  
+  {% else %}
+    <h4>Tırlarım</h4>
+    <div class = "alert alert - danger" > Henüz Tırınız Bulunmuyor </div>
+    <a href="/driverdashboard/tasıyıcı_ayar/addtruck" class = "btn btn-primary"> Tır Ekle </a>
+    <hr>
+
+  {% endif %}
+
+{% endif %}
+
+
+
+
+
+{% endblock body %}

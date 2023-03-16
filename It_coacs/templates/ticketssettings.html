@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+{% block body %}
+<h4>Yolculuk Seferi Ayar Sayfaları</h4>
+<hr>
+<br>
+{% if newtickets %}
+    {% if oldtickets %}
+    <h5> Geçmiş Yolculuk Seferleriniz</h5>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">SeferID</th>
+        <th scope="col">İlk Konum</th>
+        <th scope="col">Son Konum</th>
+        <th scope="col">Başlangıç Tarihi</th>
+        <th scope="col">Ücret</th>
+        <th scope="col">Kapasite</th>
+        <th scope="col">Oluşturma Tarihi</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for oldtickets in oldtickets %}
+        <tr>
+        <th  scope="row">{{oldtickets.ticketid}}</th>
+        <td>{{oldtickets.firstlocation}}</a></td>
+        <td>{{oldtickets.endlocation}}</td>
+        <td>{{oldtickets.startdate}}</td>
+        <td>{{oldtickets.price}}</td>
+        <td>{{oldtickets.capacity}}</td>
+        <td>{{oldtickets.created_date}}</td>
+        <td><a href="ticketdetail/{{oldtickets.ticketid}}" class = "btn btn-primary">Detay </a></td>
+        <td><a href="enroledpassengers/{{oldtickets.ticketid}}" class = "btn btn-primary">Kayıtlı Yolcular </a></td>
+        
+        </tr>
+        {% endfor %}
+  
+
+    </tbody>
+    </table>
+    <hr>
+    <br>
+    {% else %}
+    <h5> Geçmiş Yolculuk Seferleriniz</h5>
+    <dl>Görüntülenecek geçmiş seferiniz bulunmamaktadır.</dl>
+    <hr>
+    <br>
+    {% endif %}
+
+<h5> İleri Tarihte Gerçekleşecek Yolculuk Seferleriniz</h5>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">SeferID</th>
+      <th scope="col">İlk Konum</th>
+      <th scope="col">Son Konum</th>
+      <th scope="col">Başlangıç Tarihi</th>
+      <th scope="col">Ücret</th>
+      <th scope="col">Kapasite</th>
+      <th scope="col">Oluşturma Tarihi</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for newtickets in newtickets %}
+    <tr>
+      <th  scope="row">{{newtickets.ticketid}}</th>
+      <td><a href="ticketdetail/{{newtickets.ticketid}}">{{newtickets.firstlocation}}</a></td>
+      <td>{{newtickets.endlocation}}</td>
+      <td>{{newtickets.startdate}}</td>
+      <td>{{newtickets.price}}</td>
+      <td>{{newtickets.capacity}}</td>
+      <td>{{newtickets.created_date}}</td>
+      <td><a href="/ticketsedit/{{newtickets.ticketid}}" class = "btn btn-primary">Güncelle </a></td>
+      <td><a href="/ticketsdelete/{{newtickets.ticketid}}" class = "btn btn-danger">Sil</a></td>
+      <td><a href="enroledpassengers/{{newtickets.ticketid}}" class = "btn btn-primary">Kayıtlı Yolcular </a></td>
+    </tr>
+    {% endfor %}
+   
+
+  </tbody>
+</table>
+<a href="/addtickets" class = "btn btn-primary">Sefer Ekle</a>
+<hr>
+<br>
+
+{% else %}
+<h4> Açtığınız Yolculuk Seferleri</h4>
+<div class = "alert alert-danger">Henüz yolculuk seferi oluşturmadınız. </div>
+<a href="/addtickets" class = "btn btn-primary">Sefer Ekle</a>
+<hr>
+<br>
+
+    {% if oldtickets %}
+    <h5> Geçmiş Yolculuk Seferleriniz</h5>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">SeferID</th>
+        <th scope="col">İlk Konum</th>
+        <th scope="col">Son Konum</th>
+        <th scope="col">Başlangıç Tarihi</th>
+        <th scope="col">Ücret</th>
+        <th scope="col">Kapasite</th>
+        <th scope="col">Oluşturma Tarihi</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for oldtickets in oldtickets %}
+        <tr>
+        <th  scope="row">{{oldtickets.ticketid}}</th>
+        <td>{{oldtickets.firstlocation}}</td>
+        <td>{{oldtickets.endlocation}}</td>
+        <td>{{oldtickets.startdate}}</td>
+        <td>{{oldtickets.price}}</td>
+        <td>{{oldtickets.capacity}}</td>
+        <td>{{oldtickets.created_date}}</td>
+        <td><a href="ticketdetail/{{oldtickets.ticketid}}" class = "btn btn-primary">Detay </a></td>
+        <td><a href="enroledpassengers/{{oldtickets.ticketid}}" class = "btn btn-primary">Kayıtlı Yolcular </a></td>
+        
+        </tr>
+        {% endfor %}
+  
+
+    </tbody>
+    </table>
+    <hr>
+    <br>
+    {% else %}
+    <h5> Geçmiş Yolculuk Seferleriniz</h5>
+    <dl>Görüntülenecek geçmiş seferiniz bulunmamaktadır.</dl>
+    <hr>
+    <br>
+    {% endif %}
+
+{% endif %}
+    <h5>Yolculuk Seferlerinizde Kaydını Sildiğiniz veya Kaydını Silen Yolcular</h5>
+    <td><a href="ticketssettings/cancelledticketsdriver"class = "btn btn-primary"> Sayfaya Git </a></td>
+    <hr>
+    <br>
+
+
+{% endblock body %}

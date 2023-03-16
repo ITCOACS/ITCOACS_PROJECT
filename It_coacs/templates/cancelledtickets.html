@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h4>İptal Edilen Yolculuklarım</h4>
+<hr>
+<br>
+{% if cancelledticketsfrpassenger %}
+    {% if cancelledticketsfrdriver %}
+        <h5> Sürücünün İptal Ettiği Yolculuklar</h5>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">SeferID</th>
+            <th scope="col">Sürücü Kullanıcı Adı</th>
+            <th scope="col">Yolcu Kullanıcı Adı</th>
+            <th scope="col">Silinme Tarihi</th>
+
+        
+        
+            <th scope="col"></th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cancelledticketsfrdriver in cancelledticketsfrdriver %}
+            <tr>
+            <th  scope="row">{{cancelledticketsfrdriver.ticket_id}}</th>
+            <td>{{cancelledticketsfrdriver.drivername}}</td>
+            <td>{{cancelledticketsfrdriver.passengername}}</td>
+            <td>{{cancelledticketsfrdriver.canceleddate}}</td>
+            
+            </tr>
+
+            {% endfor %}
+        </tbody>
+        </table>
+        <hr>
+        <br>
+    
+    {% else %}
+    <h5> Sürücünün İptal Ettiği Yolculuklar</h5>
+    <dl> Sürücü Tarafından İptal Edilen Yolculuklarınız Bulunmamaktadır. </dl>
+    <hr>
+    <br>
+
+    {% endif %}
+
+<h5> İptal Ettiğiniz Yolculuklar</h5>
+<table class="table table-hover">
+<thead>
+    <tr>
+    <th scope="col">SeferID</th>
+    <th scope="col">Sürücü Kullanıcı Adı</th>
+    <th scope="col">Yolcu Kullanıcı Adı</th>
+    <th scope="col">Silinme Tarihi</th>
+
+        
+        
+    <th scope="col"></th>
+    <th scope="col"></th>
+    </tr>
+</thead>
+<tbody>
+    {% for cancelledticketsfrpassenger in cancelledticketsfrpassenger %}
+    <tr>
+    <th  scope="row">{{cancelledticketsfrpassenger.ticket_id}}</th>
+    <td>{{cancelledticketsfrpassenger.drivername}}</td>
+    <td>{{cancelledticketsfrpassenger.passengername}}</td>
+    <td>{{cancelledticketsfrpassenger.canceleddate}}</td>
+        
+    </tr>
+
+    {% endfor %}
+</tbody>
+</table>
+<hr>
+<br>
+
+
+
+
+{% else %}
+
+<div class="alert alert-info" role="alert">
+  <strong>İptal Ettiğiniz Yolculuk Bulunmamaktadır.</strong>
+</div>
+<hr>
+<br>
+    {% if cancelledticketsfrdriver %}
+        <h5> Sürücünün İptal Ettiği Yolculuklar</h5>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">SeferID</th>
+            <th scope="col">Sürücü Kullanıcı Adı</th>
+            <th scope="col">Yolcu Kullanıcı Adı</th>
+            <th scope="col">Silinme Tarihi</th>
+        
+        
+            <th scope="col"></th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cancelledticketsfrdriver in cancelledticketsfrdriver %}
+            <tr>
+            <th  scope="row">{{cancelledticketsfrdriver.ticket_id}}</th>
+            <td>{{cancelledticketsfrdriver.drivername}}</td>
+            <td>{{cancelledticketsfrdriver.passengername}}</td>
+            <td>{{cancelledticketsfrdriver.canceleddate}}</td>
+        
+            </tr>
+
+            {% endfor %}
+        </tbody>
+        </table>
+        <hr>
+        <br>
+    
+    {% else %}
+    <h5> Sürücünün İptal Ettiği Yolculuklar</h5>
+    <dl> Sürücü Tarafından İptal Edilen Yolculuklarınız Bulunmamaktadır. </dl>
+    <hr>
+    <br>
+    {% endif %}
+
+{% endif %}
+
+
+
+
+
+
+
+{% endblock body %}

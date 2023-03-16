@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<h3 align="center">Dorse Ekle ve Kaydet</h3>
+<div class="container">
+ <div class="row">
+    <div class="col-md-12">
+ 
+    
+    <form method="POST">
+    
+    <div>{{user_idd}}</div>
+    
+  
+    <div class="form-group">
+        <label for="email">Dorse Modeli:</label>
+        <select class="form-control" id="trailermodel" name="trailermodel">
+            {% for trailermodel in trailermodel %}
+            <option value="{{trailermodel.trailermodelid}}">{{trailermodel.trailermodel_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="email">Dorse Tipi:</label>
+        <select class="form-control" id="trailertype" name="trailertype"></select>
+    </div>
+    
+
+
+
+
+
+
+
+    <div class="form-group">
+        <label for="email">Dorse Yaşı:</label>
+        <input type="number" class="form-control" name="traileryear" id="traileryear" placeholder="Dorse Yaşı">
+    </div> 
+    
+    <div class="form-group">
+        <label for="email">Çekiş Türü:</label>
+        <select class="form-control" name="wheelamount" id="wheelamount" >
+            <option value="4x2">4x2</option>
+            <option value="4x4">4x4</option>
+            <option value="6x2">6x2</option>
+            <option value="6x4">6x4</option>
+            <option value="6x6">6x6</option>
+            <option value="8x2x2">8x2x2</option>
+            <option value="8x2x4">8x2x4</option>
+            <option value="8x4x4">8x4x4</option>
+            <option value="8x8x4">8x8x4</option>
+            
+        </select>
+    </div> 
+    
+    <div class="form-group">
+        <label for="email">Km:</label>
+        <input type="text" class="form-control" name="km" id="km" placeholder="km">
+    </div>    
+
+    <div class="form-group">
+        <label for="email">Dorse Yük Taşıma Kapasitesi (Kg):</label>
+        <input type="text" class="form-control" name="trailercapasity" id="trailercapasity" placeholder="Dorse Taşıma Kapasitesi (Kg)">
+    </div>   
+
+    
+
+    <div class="form-group">
+        <label for="email">Lastik Kullanım Yüzdesi % :</label>
+        <select class="form-control" name="wheelpercent" id="wheelpercent" >
+            <option value="0">0</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+            <option value="60">60</option>
+            <option value="70">70</option>
+            <option value="80">80</option>
+            <option value="90">90</option>
+            <option value="100">100</option>
+        </select>
+    </div>   
+
+       
+
+    <input type="submit" class="btn btn-success btn-lg">
+  </form> 
+   </div>
+ </div>
+</div> 
+<script>
+trailermodel_select = document.getElementById('trailermodel');
+trailertype_select = document.getElementById('trailertype');
+
+  
+trailermodel_select.onchange = function(){
+ trailermodel = trailermodel_select.value;
+
+ fetch('/driverdashboard/tasıyıcı_ayar/addtrailer/trailertype/' + trailermodel).then(function(response){
+  response.json().then(function(data) {
+   optionHTML = '';
+   for (trailertype of data.trailertype_model) {
+    optionHTML += '<option value="' + trailertype.trailertypeid +'">' + trailertype.trailertype_name + '</option>'
+   }
+   trailertype_select.innerHTML = optionHTML;
+  });
+ });
+}
+
+</script>
+</body>
+</html>
+
+{% endblock body  %}

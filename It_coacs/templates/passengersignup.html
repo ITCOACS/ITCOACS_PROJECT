@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if trip %}
+
+<h4>{{sumcapasity}}</h4>
+
+<h4>{{trip.firstlocation}}/{{trip.endlocation}}</h4>
+<hr>
+Yolculuk Seferini Ekleyen: {{trip.ticketsowner}}
+<hr>
+Başlama Tarihi: {{trip.startdate}}
+
+<hr>
+Oluşturulma Tarihi: {{trip.created_date}}
+<hr>
+Seferin Detayları 
+
+<br>
+<br>
+
+<!-- CK4 Editörde resim veya belge eklendiğinde database e html formatında eklendiği için bunu normal formda göstermek için djanga templatın filtreleme özelliği kullanılacak -->
+{{trip.routeaddress | safe }}
+<hr>
+
+Boş Koltuk Sayısı : {{sumcapasity}}
+<hr>
+<br>
+    <form method = "post">
+    <button type="submit" class="btn btn-danger">Yolculuk Seferini Ekle</button>
+    </form>
+
+{% else %}
+
+<div class ="alert alert-warning"> Görüntüleyebileceğiniz yolculuk seferi bulunmuyor.</div>
+
+{% endif %}
+
+{% endblock body %}

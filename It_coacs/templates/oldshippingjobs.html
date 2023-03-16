@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h4> Gerçekleşen Taşımacılık İşleri</h4>
+
+
+{% if shippingjobs %}
+    <br>
+    <br>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">İş ID</th>
+        <th scope="col">Oluşturma Tarihim</th>
+        <th scope="col">İşi Oluşturan</th>
+        <th scope="col">Başlama Tarihi</th>
+        <th scope="col">Bitiş Tarihi</th>
+        <th scope="col">Yük Alım Konumu</th>
+        <th scope="col">Yük Teslim Konumu</th>
+        <th scope="col">Mal Cinsi</th>
+        <th scope="col">Tehlike Sınıfı</th>
+        <th scope="col">Şoför Ücreti</th>
+        
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for shippingjobs in shippingjobs %}
+      <tr>
+        <th  scope="row">{{shippingjobs.jobid}}</th>
+        <td>{{shippingjobs.shippingcreateddate}}</td>
+        <td>{{shippingjobs.consignor_username}}</td>
+        <td>{{shippingjobs.shippingstartdate}}</td>
+        <td>{{shippingjobs.shippingenddate}}</td>
+        <td>{{shippingjobs.shippingstartplace}}</td>
+        <td>{{shippingjobs.shippingendplace}}</td>
+        <td>{{shippingjobs.shippingcargo}}</td>
+        <td>{{shippingjobs.shippingcargodangerousclass}}</td>
+        <td>{{shippingjobs.unitdriverfee}}</td>
+        <td>{{shippingjobs.unitdriverfee}}/{{shippingjobs.unitdriverfeecurrency}}</td>
+      
+        
+        <td> <a href="" class = "btn btn-primary"> Kayıtlı Tır-Şoförler </a></td>
+        
+      </tr>
+      
+      
+      {% endfor %}
+    </tbody>
+  </table>
+<dd>Yeni taşımacılık işi oluşturmak butona tıklayınız.</dd>
+<a href="/consignordashboard/newshippingjobs/addshippingjob" class = "btn btn-info"> Yeni Taşıma İşi Oluştur</a>
+{% else %}
+<hr>
+
+<dd>Oluşturduğunuz taşımacılık iş kaydı bulunmamaktadır. Yeni taşımacılık işi oluşturmak butona tıklayınız.</dd>
+<br>
+<a href="/consignordashboard/newshippingjobs/addshippingjob" class = "btn btn-info"> Yeni Taşıma İşi Oluştur</a>
+
+{% endif %}
+
+
+{% endblock body %}

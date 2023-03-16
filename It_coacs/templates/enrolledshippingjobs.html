@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+{% if enrolledshippingjobs %}
+    <h5> Seferinize Kayıt Olan Yolcular</h5>
+    <hr>
+        
+    <h6>Yolculuk Seferlerinizde Kaydını Sildiğiniz veya Kaydını Silen Yolcular</h6>
+    <td><a href="enrolledshippingjobs/cancelledshippingjobs-driver"class = "btn btn-primary"> Sayfaya Git </a></td>
+    <hr>
+    <br>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">SeferID</th>
+        <th scope="col">Kullanıcı Adı</th>
+        
+        <th scope="col">Email</th>
+        <th scope="col">Oluşturma Tarihi</th>
+
+        <th scope="col">Yük Alma Tarihi</th>
+        <th scope="col">Yük Alma Konum</th>
+
+        <th scope="col">Yük Teslim Tarihi</th>
+        <th scope="col">Yük Teslim Konum</th>
+     
+        <th scope="col">Ücret</th>
+        
+        
+        <th scope="col"></th>
+        <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for enrolledshippingjobs in enrolledshippingjobs %}
+        <tr>
+        <th  scope="row">{{enrolledshippingjobs.jobid}}</th>
+        
+        <td>{{enrolledshippingjobs.username}}</td>
+        <td>{{enrolledshippingjobs.email}}</td>
+        <td>{{enrolledshippingjobs.shippingcreateddate}}</td>
+
+        <td>{{enrolledshippingjobs.shippingstartplace}}</a></td>
+        <td>{{enrolledshippingjobs.shippingstartdate}}</td>
+
+        <td>{{enrolledshippingjobs.shippingendplace}}</td>
+        <td>{{enrolledshippingjobs.shippingenddate}}</td>
+        <td>{{enrolledshippingjobs.unitdriverfee}}-{{enrolledshippingjobs.unitdriverfeecurrency}}</td>
+        
+        <td><a href="enrolledshippingjobs/deleteenrolledshippingjobs/{{enrolledshippingjobs.jobid}}" class = "btn btn-danger">Taşımacılık İşini İptal Et </a></td>
+        
+        </tr>
+        {% endfor %}
+
+
+{% else %}
+
+<div class ="alert alert-warning"> Kayıt olduğunuz taşımacılık işi bulunmamaktadır.</div>
+    <h6>Yolculuk Seferlerinizde Kaydını Sildiğiniz veya Kaydını Silen Yolcular</h6>
+    <td><a href="enrolledshippingjobs/cancelledshippingjobs-driver"class = "btn btn-primary"> Sayfaya Git </a></td>
+    <hr>
+
+{% endif %}
+
+
+
+
+{% endblock body %}

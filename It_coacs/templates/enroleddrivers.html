@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+{% if enroleddrivers %}
+    <h5> Seferinize Kayıt Olan Yolcular</h5>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">Taşımacılık ID</th>
+        <th scope="col">Taşıyıcı Kullanıcı Adı</th>
+        <th scope="col">Taşıyıcı Email</th>
+
+        <th scope="col">Tır Markası</th>
+        <th scope="col">Tır Modeli</th>
+        <th scope="col">Tır Model Çeşidi</th>
+
+        <th scope="col">Dorse Türü</th>
+        <th scope="col">Dorse Çeşidi</th>
+     
+        
+        
+        <th scope="col"></th>
+        <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for enroleddrivers in enroleddrivers %}
+        <tr>
+        <th  scope="row">{{enroleddrivers.jobidd}}</th>
+        <td>{{enroleddrivers.user_name}}</td>
+        <td>{{enroleddrivers.email}}</td>
+
+        <td>{{enroleddrivers.marka_ad}}</td>
+        <td>{{enroleddrivers.model}}</a></td>
+        <td>{{enroleddrivers.model_type_name}}</td>
+
+        <td>{{enroleddrivers.trailermodel_name}}</td>
+        <td>{{enroleddrivers.trailertype_name}}</td>
+
+        <td>/</td>
+        
+        
+        <td><a href="/enrolleddriversdelete/{{enroleddrivers.jobidd}}-{{enroleddrivers.user_name}}" class = "btn btn-danger">Taşıyıcı Silme ve İletişim </a></td>
+        
+        </tr>
+        {% endfor %}
+
+
+{% else %}
+
+<div class ="alert alert-warning"> Oluşturduğunuz işe kayıtlı sürücü bulunmamaktadır.</div>
+
+{% endif %}
+
+
+
+{% endblock body %}

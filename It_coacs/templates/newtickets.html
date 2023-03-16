@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h4> İleri Tarihteki Yolculuklarım</h4>
+{% if nticketdetail %}
+    <br>
+    <br>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Kayıt Tarihim</th>
+        <th scope="col">Şoför</th>
+        <th scope="col">Tır Marka</th>
+        <th scope="col">Tır Model</th>
+        <th scope="col">Tır Çeşidi</th>
+        <th scope="col">1.Konum</th>
+        <th scope="col">Son Konum</th>
+        <th scope="col">Başlangıç Zamanı</th>
+        <th scope="col">Ücret</th>
+        
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for nticketdetail in nticketdetail %}
+      <tr>
+        <th  scope="row">{{nticketdetail.ticket_id}}</th>
+        <td>{{nticketdetail.enroldate}}</td>
+        <td>{{nticketdetail.ticketsowner}}</td>
+        <td>{{nticketdetail.marka_ad}}</td>
+        <td>{{nticketdetail.model}}</td>
+        <td>{{nticketdetail.model_type_name}}</td>
+        <td>{{nticketdetail.firstlocation}}</td>
+        <td>{{nticketdetail.endlocation}}</td>
+        <td>{{nticketdetail.startdate}}</td>
+        <td>{{nticketdetail.price}}</td>
+      
+        
+        <td><a href="/passengerdashboard/newtickets/deletesignedticket/{{nticketdetail.ticket_id}}-{{nticketdetail.ticketsowner}}" class = "btn btn-danger"> Yolculuk Kaydını İptal Et</a></td>
+      </tr>
+    <!--...  yolculuk seferine kayıt olan kullanıcı kayıdını silmek istediğinde sorguda çektiğimiz veriler ve tablolar çok fazla
+    bunların arasından ticketpassengers tablosundaki ticket_id değerini url içinde döndürmemiz gerekir
+    ve bunu da python tarafında ayrı bir url def fonksiyonu içine atarak yapabiliriz.        -->
+      
+      
+      {% endfor %}
+    </tbody>
+  </table>
+<dd>Başka yolculuklara kayıt olmak için tıklayınız.</dd>
+<a href="/tickets" class = "btn btn-info"> Sayfaya Git</a>
+{% else %}
+<br>
+<br>
+<dd>Kayıtlı olduğunuz ileri tarihli bir yolculuk seferi bulunmamaktadır.</dd>
+<dd>Kayıt Olabileceğiniz Yolcuklara Bakmak İçin Tıklayınız</dd>
+<a href="/tickets" class = "btn btn-info"> Sayfaya Git</a>
+{% endif %}
+
+{% endblock body %}

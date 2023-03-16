@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+{% if trucktrailer %}
+      <h4>Taşımacılık İş Listelemesinde Kullanılacak Tır-Dorse </h4>
+      <br>
+      <br>
+      
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">user_trucktrailer_id</th>
+        <th scope="col">Kullanıcı Adı</th>
+        <th scope="col">Tır Marka</th>
+        <th scope="col">Tır Model</th>
+        <th scope="col">Tır Çeşidi</th>
+        <th scope="col">user_trucktrailer_id</th>
+        <th scope="col">Dorse Adı</th>
+        <th scope="col">Dorse Çeşidi</th>
+        
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for trucktrailer in trucktrailer %}
+      <tr>
+        <th  scope="row">{{trucktrailer.user_trucktrailer_id}}</th>
+        <td>{{trucktrailer.user_name}}</td>
+        <td>{{trucktrailer.marka_ad}}</td>
+        <td>{{trucktrailer.model}}</td>
+        <td>{{trucktrailer.model_type_name}}</td>
+        <td>{{trucktrailer.user_trucktrailer_id}}</td>
+        <td>{{trucktrailer.trailermodel_name}}</td>
+        <td>{{trucktrailer.trailertype_name}}</td>
+      
+        
+        <td><a href="/driverdashboard/tasıyıcı_ayar/deletetrucktrailer/{{trucktrailer.user_trucktrailer_id}}" class = "btn btn-danger">Tır-Dorse İlişkisini Sil</a></td>
+      </tr>
+    
+      
+      
+      {% endfor %}
+    </tbody>
+  </table>
+      <h5>Yeni Bir İlişki Kurmak İçin Önceki İlişkinizi Siliniz</h5>
+    
+{% else %}
+<h4>Eşleştirdiğiniz Tır-Dorse Bulunmamaktadır.</h4>
+<h4> İş Kayıtında Kullanacağınız Tır-Dorse Eşlemesini Yapınız.</h4>
+<hr>
+<div class="container">
+ <div class="row">
+    <div class="col-md-12">
+    <form method="POST">
+    <div class="form-group">
+        <label for="email">Kullanacağınız Tırınızı Seçiniz:</label>
+        <select class="form-control" id="usertruck_id" name="usertruck_id">
+            {% for trucks in trucks %}
+            <option value="{{trucks.usertruck_id}}">ID:{{trucks.usertruck_id}} {{trucks.marka_ad}} {{trucks.model}} {{trucks.model_type_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Kullanacağınız Dorsenizi Seçiniz:</label>
+        <select class="form-control" id="usertrailerid" name="usertrailerid">
+            {% for trailer in trailer %}
+            <option value="{{trailer.usertrailerid}}">ID:{{trailer.usertrailerid}} {{trailer.trailermodel_name}} {{trailer.trailertype_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <input type="submit" class="btn btn-success">
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

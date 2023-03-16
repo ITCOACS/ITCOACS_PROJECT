@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<h3 align="center">Tır Ekle ve Kaydet</h3>
+<div class="container">
+ <div class="row">
+    <div class="col-md-12">
+ 
+    
+    <form method="POST">
+    
+    <div>{{user_idd}}</div>
+    
+  
+    <div class="form-group">
+        <label for="email">Tır Markası:</label>
+        <select class="form-control" id="truckbrands" name="truckbrands">
+            {% for truckbrands in truckbrands %}
+            <option value="{{truckbrands.markaid}}">{{truckbrands.marka_ad}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="email">Tır Modeli:</label>
+        <select class="form-control" id="truckmodel" name="truckmodel"></select>
+    </div>
+    <div class="form-group">
+        <label for="email">Tır Model Tipi:</label>
+        <select class="form-control" id="truckmodeltype" name="truckmodeltype"></select>
+    </div>
+
+
+
+
+
+
+
+    <div class="form-group">
+        <label for="email">Tır Yaşı:</label>
+        <input type="number" class="form-control" name="truckyear" id="truckyear" placeholder="Tır Yaşı">
+    </div> 
+    
+    <div class="form-group">
+        <label for="email">Çekiş Türü:</label>
+        <select class="form-control" name="wheeldrive" id="wheeldrive" >
+            <option value="4x2">4x2</option>
+            <option value="4x4">4x4</option>
+            <option value="6x2">6x2</option>
+            <option value="6x4">6x4</option>
+            <option value="6x6">6x6</option>
+            <option value="8x2x2">8x2x2</option>
+            <option value="8x2x4">8x2x4</option>
+            <option value="8x4x4">8x4x4</option>
+            <option value="8x8x4">8x8x4</option>
+            
+        </select>
+    </div> 
+    
+    <div class="form-group">
+        <label for="email">Km:</label>
+        <input type="text" class="form-control" name="km" id="km" placeholder="km">
+    </div>    
+
+    <div class="form-group">
+        <label for="email">Tır Yük Taşıma Kapasitesi (Kg):</label>
+        <input type="text" class="form-control" name="transportcapasity" id="transportcapasity" placeholder="Tır Taşıma Kapasitesi (Kg)">
+    </div>   
+
+    <div class="form-group">
+        <label for="email">Tır Yolcu Taşıma Kapasitesi:</label>
+        <select class="form-control" name="passengercapasity" id="passengercapasity" >
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Lastik Kullanım Yüzdesi % :</label>
+        <select class="form-control" name="wheelpercent" id="wheelpercent" >
+            <option value="0">0</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+            <option value="60">60</option>
+            <option value="70">70</option>
+            <option value="80">80</option>
+            <option value="90">90</option>
+            <option value="100">100</option>
+        </select>
+    </div>   
+
+    <div class="form-group">
+        <label for="email">Yakıt Türü:</label>
+        <select class="form-control" name="fueltype" id="fueltype" >
+            <option value="Dizel">Dizel</option>
+            <option value="Benzin">Benzin</option>
+            <option value="Benzin+LPG">Benzin+LPG</option>
+            <option value="LNG">LNG</option>
+        </select>
+    </div>   
+
+    <div class="form-group">
+        <label for="email">Plaka:</label>
+        <input type="text" class="form-control" name="licence_plate" id="licence_plate" placeholder="Örn:26AAA26">
+    </div>   
+
+    <input type="submit" class="btn btn-success btn-lg">
+  </form> 
+   </div>
+ </div>
+</div> 
+<script>
+truckbrands_select = document.getElementById('truckbrands');
+truckmodel_select = document.getElementById('truckmodel');
+truckmodeltype_select = document.getElementById('truckmodeltype');
+  
+truckbrands_select.onchange = function(){
+ truckbrands = truckbrands_select.value;
+
+ fetch('/driverdashboard/tasıyıcı_ayar/addtruck/truckmodel/' + truckbrands).then(function(response){
+  response.json().then(function(data) {
+   optionHTML = '';
+   for (truckmodel of data.truckmodel_brand) {
+    optionHTML += '<option value="' + truckmodel.modelid +'">' + truckmodel.model + '</option>'
+   }
+   truckmodel_select.innerHTML = optionHTML;
+  });
+ });
+}
+truckmodel_select.onchange = function(){
+ truckmodel = truckmodel_select.value;
+  
+ fetch('/driverdashboard/tasıyıcı_ayar/addtruck/truckmodeltype/' + truckmodel).then(function(response){
+  response.json().then(function(data) {
+   optionHTML = '';
+   for (truckmodeltype of data.truckmodeltypelist) {
+    optionHTML += '<option value="' + truckmodeltype.modeltypeid +'">' + truckmodeltype.model_type_name + '</option>'
+   }
+   truckmodeltype_select.innerHTML = optionHTML;
+  });
+ });
+}
+</script>
+</body>
+</html>
+
+{% endblock body  %}

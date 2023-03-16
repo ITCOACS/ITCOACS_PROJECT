@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if shippingjobs %}
+
+
+<h4>{{shippingjobs.shippingstartplace}}/{{shippingjobs.shippingendplace}}</h4>
+<hr>
+Taşımacılık İşini Ekleyen: {{shippingjobs.consignor_username}}
+<hr>
+Taşımacılık Ücreti: {{shippingjobs.unitdriverfee}} - {{shippingjobs.unitdriverfeecurrency}}
+<hr>
+Yükleme Tarihi: {{shippingjobs.shippingstartdate}}
+<hr>
+Teslim Tarihi: {{shippingjobs.shippingenddate}}
+<hr>
+
+Seferin Detayları
+<br> 
+Başlangıç Yeri: {{shippingjobs.shippingstartplace}} /
+Ayrıntılı Adres: {{shippingjobs.shippingstartplacedetailed}}
+<br>
+Bitiş Yeri: {{shippingjobs.shippingendplace}} /
+Ayrıntılı Adres: {{shippingjobs.shippingendplacedetailed}} 
+<hr>
+Teslim Alacak Kişi: {{shippingjobs.shippingendlocationperson}} /
+Teslim Alacak Kişinin Telefon Numarası: {{shippingjobs.shippingendlocationpersonphone}}
+<hr>
+
+Yük Cinsi: {{shippingjobs.shippingcargo}}
+Yük Tehlike Sınıfı: {{shippingjobs.shippingcargohazardclass}}
+Yük Tehlike UN Numarası: {{shippingjobs.shippingcargodangerousnumber}}
+
+<hr>
+Oluşturulma Tarihi: {{shippingjobs.shippingcreateddate}}
+<br>
+<hr>
+    <form method = "post">
+    <button type="submit" class="btn btn-danger">Yolculuk Seferini Ekle</button>
+    </form>
+
+{% else %}
+
+<div class ="alert alert-warning"> Görüntüleyebileceğiniz taşımacılık seferi bulunmuyor.</div>
+
+{% endif %}
+
+{% endblock body %}

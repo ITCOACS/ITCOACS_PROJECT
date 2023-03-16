@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Sürücü Kontrol Paneli</h3>
+<hr>
+<h6>Hoşgeldin {{session["username"]}}</h6>
+<hr>
+<br>
+<hr>
+<h4>Tır-Dorse Ayarları </h4>
+<dl>
+  <dt>  </dt>
+  <dd>Kullanacağınız tırları, dorseleri ekleyip silmek için tıklayınız.</dd>
+  <a href="/driverdashboard/tasıyıcı_ayar" class = "btn btn-info">Sayfaya Git</a>
+</dl>
+<hr>
+<br>
+<hr>
+<h4>Kaydolunan Taşımacılık İşi Ayarları</h4>
+<dl>
+  <dt>  </dt>
+  <dd>Yolculuk seferi eklemek, düzenlemek ve kayıt olan yolcuları görmek için tıklayınız.</dd>
+  <a href="/driverdashboard/enrolledshippingjobs"class = "btn btn-info">Sayfaya Git</a>
+</dl>
+<hr>
+<br>
+<hr>
+<h4>Yolculuk Seferi Ayarları</h4>
+<dl>
+  <dt>  </dt>
+  <dd>Yolculuk seferi eklemek, düzenlemek ve kayıt olan yolcuları görmek için tıklayınız.</dd>
+  <a href="/driverdashboard/ticketssettings"class = "btn btn-info">Sayfaya Git</a>
+</dl>
+<hr>
+
+
+{% endblock body %}

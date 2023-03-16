@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Yolcu Kontrol Paneli</h3>
+<small>Hoşgeldin {{session["username"]}}</small>
+<hr>
+<br>
+<hr>
+<h4> İleri Tarihte Gerçekleşecek Yolculuklarım </h4>
+<dl>
+  <dt>  </dt>
+  <dd>Görüntüle,Düzenle,Sil</dd>
+  <a href="/passengerdashboard/newtickets" class = "btn btn-info">Sayfaya Git</a>
+</dl>
+<hr>
+<br>
+<hr>
+<h4> Geçmiş Yolculuklarım </h4>
+<dl>
+  <dt>  </dt>
+  <dd></dd>
+  <a href="/passengerdashboard/oldtickets"class = "btn btn-info">Sayfaya Git</a>
+</dl>
+<hr>
+<br>
+
+<h4> İptal Edilen Yolculuklar </h4>
+<dl>
+  <dt>  </dt>
+  <dd>Bu sayfada sürücü veya sizin tarafınızdan iptal edilen yolculuklara erişip iletişim kurabilirsiniz.</dd>
+  <a href="/passengerdashboard/cancelledtickets"class = "btn btn-info">Sayfaya Git</a>
+</dl>
+<hr>
+<br>
+
+{% endblock body %}
